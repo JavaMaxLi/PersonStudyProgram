@@ -6,3 +6,5 @@ logging:
     com.example.websocketdemo
   file:
     path: ../log
+
+location
