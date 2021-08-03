@@ -14,7 +14,7 @@ public class FileChannelTest {
         FileOutputStream out = null;
         ByteBuffer byffer = ByteBuffer.allocate(1024);
         try {
-            out = new FileOutputStream("E:\\aa.txt");
+            out = new FileOutputStream("aa.txt");
             FileChannel fileChannel = out.getChannel();
             byffer.put(str.getBytes());
             byffer.flip();

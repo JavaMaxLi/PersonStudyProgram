@@ -1,0 +1,8 @@
+## 日志输出范围配置
+logging:
+  #config: classpath:logback.xml
+  #file: serverUser.log
+  level:
+    com.example.websocketdemo
+  file:
+    path: ../log
