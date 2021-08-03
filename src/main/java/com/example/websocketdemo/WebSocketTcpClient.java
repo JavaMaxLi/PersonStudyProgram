@@ -12,7 +12,7 @@ public class WebSocketTcpClient {
 
             for (int i = 0; i < 10; i++) {
                 Socket socket = new Socket();
-                SocketAddress socketAddress = new InetSocketAddress(InetAddress.getLocalHost(),8080);
+                SocketAddress socketAddress = new InetSocketAddress(InetAddress.getLocalHost(),6666);
                 socket.connect(socketAddress);
                 socket.getOutputStream().write(("客户端第"+i+"个请求").getBytes());
             }
