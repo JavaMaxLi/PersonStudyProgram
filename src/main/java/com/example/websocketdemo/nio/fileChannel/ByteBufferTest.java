@@ -6,7 +6,7 @@ import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
 /**
- * 使用MappedByteBuffer直接对文件在内存中修改(堆外内存)
+ * ByteBuffer测试
  */
 @Slf4j
 public class ByteBufferTest {
