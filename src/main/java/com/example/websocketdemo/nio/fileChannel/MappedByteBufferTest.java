@@ -3,7 +3,9 @@ package com.example.websocketdemo.nio.fileChannel;
 import java.io.RandomAccessFile;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
-
+/**
+ * 使用MappedByteBuffer直接对文件在内存中修改(堆外内存)
+ */
 public class MappedByteBufferTest {
 
     public static void main(String[] args) throws Exception{
