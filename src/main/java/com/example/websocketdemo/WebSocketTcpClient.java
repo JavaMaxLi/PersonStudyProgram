@@ -10,11 +10,9 @@ public class WebSocketTcpClient {
 
 
 
-            for (int i = 0; i < 10; i++) {
                 Socket socket = new Socket();
-                SocketAddress socketAddress = new InetSocketAddress(InetAddress.getLocalHost(),6666);
+                SocketAddress socketAddress = new InetSocketAddress(InetAddress.getLocalHost(),7000);
                 socket.connect(socketAddress);
-                socket.getOutputStream().write(("客户端第"+i+"个请求").getBytes());
-            }
+                socket.getOutputStream().write(("abc1234").getBytes());
     }
 }
