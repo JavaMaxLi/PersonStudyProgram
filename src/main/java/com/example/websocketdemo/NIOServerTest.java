@@ -20,7 +20,7 @@ public class NIOServerTest {
         ServerSocketChannel serverSocketChannel = null;
 
         try {
-            //获取到一个serverSocketChannel通道
+            //获取到一个serverSocketChannel通道1
             serverSocketChannel = ServerSocketChannel.open();
             //设置为非阻塞
             serverSocketChannel.configureBlocking(false);
