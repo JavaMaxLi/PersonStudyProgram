@@ -1,4 +1,4 @@
-package com.example.websocketdemo;
+package com.example.websocketdemo.io;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
