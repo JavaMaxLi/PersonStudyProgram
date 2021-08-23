@@ -6,6 +6,8 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * 继承ChannelInboundHandlerAdapter成为真正的handler
  */
@@ -19,9 +21,31 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter{
      */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        System.out.println("上下文对象ctx："+ctx);
-        ByteBuf buf = (ByteBuf) msg;
-        System.out.println("客户端"+ctx.channel().remoteAddress()+"发送的数据："+buf.toString(CharsetUtil.UTF_8));
+
+        //把任务添加到taskQueue队列，防止阻塞
+        ctx.channel().eventLoop().execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(5*1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                ByteBuf buf = (ByteBuf) msg;
+                System.out.println("客户端"+ctx.channel().remoteAddress()+"发送的数据："+buf.toString(CharsetUtil.UTF_8)+"，第一个任务");
+            }
+        });
+
+        //定时任务
+        ctx.channel().eventLoop().schedule(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("第二个任务");
+            }
+        },5, TimeUnit.SECONDS);
+
+
 
     }
 
@@ -35,6 +59,7 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter{
 
         //将数据写入到缓存并刷新 write + flush
         ctx.writeAndFlush(Unpooled.copiedBuffer("hello，客户端",CharsetUtil.UTF_8));
+        System.out.println("服务器读取消息完毕！");
     }
 
     /**
