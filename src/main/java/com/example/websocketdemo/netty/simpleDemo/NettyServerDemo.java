@@ -1,10 +1,7 @@
 package com.example.websocketdemo.netty.simpleDemo;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -48,6 +45,16 @@ public class NettyServerDemo {
 
             //绑定端口号并同步,并生成一个ChannelFuture对象
             ChannelFuture channelFuture = bootstrap.bind(8888).sync();
+
+            //给ChannelFuture注册监听器
+            channelFuture.addListener(new ChannelFutureListener() {
+                @Override
+                public void operationComplete(ChannelFuture channelFuture) throws Exception {
+                    if (channelFuture.isSuccess()) {
+                        System.out.println("监听端口成功8888");
+                    }
+                }
+            });
 
             //对关闭的通道进行监听
             channelFuture.channel().closeFuture().sync();
