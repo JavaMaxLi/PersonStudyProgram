@@ -1,9 +1,8 @@
-package com.example.websocketdemo.httpServer;
+package com.example.websocketdemo.netty.httpServer;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
-import io.netty.handler.codec.http.HttpObject;
 import io.netty.handler.codec.http.HttpServerCodec;
 
 public class ServerChannelInitializer extends ChannelInitializer<SocketChannel> {

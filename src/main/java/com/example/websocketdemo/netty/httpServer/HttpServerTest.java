@@ -1,12 +1,10 @@
-package com.example.websocketdemo.httpServer;
+package com.example.websocketdemo.netty.httpServer;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
-import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import jdk.nashorn.internal.runtime.linker.Bootstrap;
 
 /**
  * http服务器

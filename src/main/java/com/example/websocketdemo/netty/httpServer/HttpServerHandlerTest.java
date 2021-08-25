@@ -1,7 +1,6 @@
-package com.example.websocketdemo.httpServer;
+package com.example.websocketdemo.netty.httpServer;
 
 import com.example.websocketdemo.bean.UserBean;
-import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
@@ -9,9 +8,6 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.*;
 import io.netty.util.CharsetUtil;
 
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.net.URI;
 
 public class HttpServerHandlerTest extends SimpleChannelInboundHandler<HttpObject> {
