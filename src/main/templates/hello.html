@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form onsubmit="return false">
+        <textarea id="message" name="message" style="height: 300px;width: 600px;"></textarea>
+        <input type="button" value="发送消息" onclick="send(document.getElementById('message').value)">
+        <textarea id="replyText" name="message" style="height: 300px;width: 600px;"></textarea>
+        <input type="button" value="清空" onclick="document.getElementById('replyText').value=''">
+
+    </form>
+
+</body>
+<script>
+    var socket;
+    if(window.WebSocket) {
+        socket = new WebSocket("ws://localhost:8888/hello");
+        //显示服务器回送的消息
+        socket.onmessage = function (obj) {
+            var id = document.getElementById("replyText");
+            id.value = id.value+"\n"+obj.data;
+        }
+        //打开连接
+        socket.onopen = function (obj) {
+            var id = document.getElementById("replyText");
+            id.value = "连接开启。。。";
+        }
+        //关闭连接
+        socket.onclose = function (obj) {
+            var id = document.getElementById("replyText");
+            id.value = "连接关闭了。。。";
+        }
+
+    } else {
+        alert("当前浏览器不支持websocket")
+    }
+
+    //发送消息
+    function send(message) {
+        if(window.socket) {//判断连接是否创建
+
+        }
+        if(socket.readyState==WebSocket.OPEN) {
+            alert(message);
+            socket.send(message);
+        } else {
+            alert("连接未开启。。。")
+        }
+    }
+
+</script>
+</html>

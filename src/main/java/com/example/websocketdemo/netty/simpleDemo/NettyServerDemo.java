@@ -1,11 +1,14 @@
 package com.example.websocketdemo.netty.simpleDemo;
 
+import com.example.websocketdemo.netty.heartbeat.HeartBeatHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.timeout.IdleStateHandler;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Netty入门服务端
@@ -38,7 +41,11 @@ public class NettyServerDemo {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
                             //为pipeline管道添加处理器
-                            socketChannel.pipeline().addLast(new NettyServerHandler());
+                           // socketChannel.pipeline().addLast(new NettyServerHandler());
+                            //心跳监听，会传给下一个handler处理器
+                            socketChannel.pipeline().addLast(new IdleStateHandler(3,5,7, TimeUnit.SECONDS));
+                            //接收到心跳监听，进行处理
+                            socketChannel.pipeline().addLast(new HeartBeatHandler());
                         }
 
                     });
